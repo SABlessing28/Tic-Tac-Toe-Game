@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 10px;
+        }
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .row
+        {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: 100px 100px 100px;
+        }
+        button
+        {
+            height: 100px;
+            margin: 0px;
+            font-size: 3em;
+            background-color: thistle;
+        }
+        button:disabled {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+    <script>
+        var currentPlayer = "X";
+        var moves = 9;
+        function processGame(button_number)
+        {
+            var btn = document.getElementById("btn" + button_number);
+            btn.innerHTML = currentPlayer;
+            btn.setAttribute("disabled", true);
+
+            moves--;
+            checkwinner();
+            console.log(moves);
+            if (currentPlayer == "X")
+            {
+                currentPlayer = "O";
+            }
+            else
+            {
+                currentPlayer = "X";
+            }
+        }
+
+        function checkwinner()
+        {
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            var btn3 = document.getElementById("btn3");
+            var btn4 = document.getElementById("btn4");
+            var btn5 = document.getElementById("btn5");
+            var btn6 = document.getElementById("btn6");
+            var btn7 = document.getElementById("btn7");
+            var btn8 = document.getElementById("btn8");
+            var btn9 = document.getElementById("btn9");
+
+            var b1 = btn1.innerHTML;
+            var b2 = btn2.innerHTML;
+            var b3 = btn3.innerHTML;
+            var b4 = btn4.innerHTML;
+            var b5 = btn5.innerHTML;
+            var b6 = btn6.innerHTML;
+            var b7 = btn7.innerHTML;
+            var b8 = btn8.innerHTML;
+            var b9 = btn9.innerHTML;
+
+            var winner = "";
+
+            if (b1 == "X" && b2 == "X" && b3 == "X")
+            {
+                winner = "X";
+                btn1.style.background = "Green";
+                btn2.style.background = "Green";
+                btn3.style.background = "Green";
+            }
+            if (b4 == "X" && b5 == "X" && b6 == "X")
+            {
+                winner = "X";
+            }
+            if (b7 == "X" && b8 == "X" && b9 == "X")
+            {
+                winner = "X";
+            }
+            if (b1 == "X" && b4 == "X" && b7 == "X")
+            {
+                winner = "X";
+            }
+            if (b2 == "X" && b5 == "X" && b8 == "X")
+            {
+                winner = "X";
+            }
+            if (b3 == "X" && b6 == "X" && b9 == "X")
+            {
+                winner = "X";
+            }
+            if (b1 == "X" && b5 == "X" && b9 == "X")
+            {
+                winner = "X";
+            }
+            if (b3 == "X" && b5 == "X" && b7 == "X")
+            {
+                winner = "X";
+            }
+            if (b1 == "O" && b2 == "O" && b3 == "O")
+            {
+                winner = "O";
+            }
+            if (b4 == "O" && b5 == "O" && b6 == "O")
+            {
+                winner = "O";
+            }
+            if (b7 == "O" && b8 == "O" && b9 == "O")
+            {
+                winner = "O";
+            }
+            if (b1 == "O" && b4 == "O" && b7 == "O")
+            {
+                winner = "O";
+            }
+            if (b2 == "O" && b5 == "O" && b8 == "O")
+            {
+                winner = "O";
+            }
+            if (b3 == "O" && b6 == "O" && b9 == "O")
+            {
+                winner = "O";
+            }
+            if (b1 == "O" && b5 == "O" && b9 == "O")
+            {
+                winner = "O";
+            }
+            if (b3 == "O" && b5 == "O" && b7 == "O")
+            {
+                winner = "O";
+            }
+
+            if (winner != "")
+            {
+                document.getElementById("result").innerHTML = winner + " won the game.";
+                btn1.removeAttribute("onclick");
+                btn2.removeAttribute("onclick");
+                btn3.removeAttribute("onclick");
+                btn4.removeAttribute("onclick");
+                btn5.removeAttribute("onclick");
+                btn6.removeAttribute("onclick");
+                btn7.removeAttribute("onclick");
+                btn8.removeAttribute("onclick");
+                btn9.removeAttribute("onclick");
+            }
+            if (moves == 0 && winner == "")
+            {
+                document.getElementById("result").innerHTML = "match draw";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>Tic Tac Toe Game</h3>
+    <div class="row">
+        <button id="btn1" onclick="processGame('1')"></button>
+        <button id="btn2" onclick="processGame('2')"></button>
+        <button id="btn3" onclick="processGame('3')"></button>
+        <button id="btn4" onclick="processGame('4')"></button>
+        <button id="btn5" onclick="processGame('5')"></button>
+        <button id="btn6" onclick="processGame('6')"></button>
+        <button id="btn7" onclick="processGame('7')"></button>
+        <button id="btn8" onclick="processGame('8')"></button>
+        <button id="btn9" onclick="processGame('9')"></button>
+        
+    </div>
+    <h3 id="result"></h3>
+</body>
+</html>
